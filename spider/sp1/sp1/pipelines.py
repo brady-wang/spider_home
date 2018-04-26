@@ -8,7 +8,7 @@ import sqlite3
 # 格式化成2016-03-20 11:45:39形式
 import time
 
-now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
 
 class Sp1Pipeline(object):
     def open_spider(self,spider):
@@ -17,6 +17,7 @@ class Sp1Pipeline(object):
 
 
     def process_item(self, item, spider):
+        now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         print(spider.name,"爬虫 入库 ****************************")
         sql = "insert OR IGNORE into  article(title,desc,create_time) values('{}','{}','{}')".format(item['title'], item['img_url'], now)
         print(sql)
